@@ -6,53 +6,49 @@
         async function loadPyodideAndCalculate() {
             // Load Pyodide
             let pyodide = await loadPyodide();
-
-            // Define your Python code
+        
+            // Adjusted Python code as a string
             let pythonCode = `
-def calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridge_lifespan, mix_cost_per_bottle, bottled_soda_cost_per_bottle):
-    total_bottles = 0
-    total_cost_soda_stream = soda_stream_cost
-    cartridges_used = 0
-
-    while True:
-        total_liters = total_bottles * 0.8
-        cartridges_needed = (total_liters // cartridge_lifespan) + (1 if total_liters % cartridge_lifespan > 0 else 0)
-
-        if cartridges_needed > cartridges_used:
-            cartridges_used = cartridges_needed
-
-        co2_cost = cartridges_used * cartridge_cost
-        mix_cost = total_bottles * mix_cost_per_bottle
-        total_cost_soda_stream = soda_stream_cost + co2_cost + mix_cost
-        total_cost_bottled_soda = total_bottles * bottled_soda_cost_per_bottle
-
-        if total_cost_soda_stream <= total_cost_bottled_soda:
-            break
-
-        total_bottles += 1
-
-    return total_bottles, total_cost_soda_stream, total_cost_bottled_soda
-
-# Inputs from the user
-soda_stream_cost = ${document.getElementById('sodaStreamCost').value}
-cartridge_cost = ${document.getElementById('cartridgeCost').value}
-cartridge_lifespan = ${document.getElementById('cartridgeLifespan').value}
-mix_cost_per_bottle = ${document.getElementById('mixCostPerBottle').value}
-bottled_soda_cost_per_bottle = ${document.getElementById('bottledSodaCostPerBottle').value}
-
-# Calculate
-result = calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridge_lifespan, mix_cost_per_bottle, bottled_soda_cost_per_bottle)
-`;
-
-            // Run your Python code
+        def calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridge_lifespan, mix_cost_per_nine_liters, bottled_soda_cost_per_liter):
+            mix_cost_per_800ml = mix_cost_per_nine_liters / (9000 / 800)
+            bottled_soda_cost_per_800ml = bottled_soda_cost_per_liter * 0.8
+            total_bottles = 0
+            total_cost_soda_stream = soda_stream_cost
+            cartridges_used = 0
+            while True:
+                total_liters = total_bottles * 0.8
+                cartridges_needed = (total_liters // cartridge_lifespan) + (1 if total_liters % cartridge_lifespan > 0 else 0)
+                if cartridges_needed > cartridges_used:
+                    cartridges_used = cartridges_needed
+                co2_cost = cartridges_used * cartridge_cost
+                mix_cost = total_bottles * mix_cost_per_800ml
+                total_cost_soda_stream = soda_stream_cost + co2_cost + mix_cost
+                total_cost_bottled_soda = total_bottles * bottled_soda_cost_per_800ml
+                if total_cost_soda_stream <= total_cost_bottled_soda:
+                    break
+                total_bottles += 1
+            return total_bottles, total_cost_soda_stream, total_cost_bottled_soda
+        
+        # Inputs from the user, adjusted to new inputs
+        soda_stream_cost = ${document.getElementById('sodaStreamCost').value}
+        cartridge_cost = ${document.getElementById('cartridgeCost').value}
+        cartridge_lifespan = ${document.getElementById('cartridgeLifespan').value}
+        mix_cost_per_nine_liters = ${document.getElementById('mixCostPerNineLiters').value}
+        bottled_soda_cost_per_liter = ${document.getElementById('bottledSodaCostPerLiter').value}
+        
+        # Calculate
+        result = calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridge_lifespan, mix_cost_per_nine_liters, bottled_soda_cost_per_liter)
+        `;
+        
+            // Run the adjusted Python code
             await pyodide.loadPackage(['micropip']);
             pyodide.runPython(pythonCode);
-
+        
             // Display the result
             let result = pyodide.runPython(`
                 repr(result)
             `);
-
+        
             document.getElementById('result').textContent = `Result: ${result}`;
         }
     </script>
@@ -63,8 +59,8 @@ result = calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridg
     Cost of SodaStream Machine: <input id="sodaStreamCost" type="number" step="any"><br>
     Cost of CO2 Cartridges: <input id="cartridgeCost" type="number" step="any"><br>
     Cartridge Lifespan (liters): <input id="cartridgeLifespan" type="number" step="any"><br>
-    Cost of Mix Per 800ml Bottle: <input id="mixCostPerBottle" type="number" step="any"><br>
-    Cost of Bottled Soda Per 800ml Bottle: <input id="bottledSodaCostPerBottle" type="number" step="any"><br>
+    Cost of Mix Per 9 Liters: <input id="mixCostPerNineLiters" type="number" step="any"><br>
+    Cost of Bottled Soda Per Liter: <input id="bottledSodaCostPerLiter" type="number" step="any"><br>
     <button onclick="loadPyodideAndCalculate()">Calculate</button>
     <p id="result"></p>
 </body>
