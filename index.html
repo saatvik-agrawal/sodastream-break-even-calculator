@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SodaStream Break-Even Calculator</title>
+</head>
+<body>
+    <h1>SodaStream Break-Even Calculator</h1>
+    <form id="calculatorForm">
+        <input type="number" id="sodaStreamCost" placeholder="Cost of SodaStream Machine" required><br>
+        <input type="number" id="cartridgeCost" placeholder="Cost of CO2 Cartridges" required><br>
+        <input type="number" id="cartridgeLifespan" placeholder="Cartridge Lifespan (liters)" required><br>
+        <input type="number" id="mixCostPerBottle" placeholder="Cost of Mix Per 800ml Bottle" required><br>
+        <input type="number" id="bottledSodaCostPerBottle" placeholder="Cost of Bottled Soda Per 800ml Bottle" required><br>
+        <button type="button" onclick="calculateBreakEven()">Calculate</button>
+    </form>
+    <div id="result"></div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
