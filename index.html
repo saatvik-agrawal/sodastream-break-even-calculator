@@ -3,6 +3,14 @@
 <head>
     <title>SodaStream Break-Even Calculator with Pyodide</title>
     <script type="module">
+
+        function fillSodaStreamDefaults() {
+            document.getElementById('sodaStreamCost').value = 250;
+            document.getElementById('cartridgeCost').value = 30;
+            document.getElementById('cartridgeLifespan').value = 60;
+            document.getElementById('mixCostPerNineLiters').value = 10;
+            document.getElementById('bottledSodaCostPerLiter').value = 3.7;
+        }
         async function loadPyodideAndCalculate() {
             // Load Pyodide
             let pyodide = await loadPyodide();
@@ -53,12 +61,15 @@
 </head>
 <body>
     <h1>SodaStream Break-Even Calculator</h1>
-    Cost of SodaStream Machine: <input id="sodaStreamCost" type="number" step="any"><br>
-    Cost of CO2 Cartridges: <input id="cartridgeCost" type="number" step="any"><br>
-    Cartridge Lifespan (liters): <input id="cartridgeLifespan" type="number" step="any"><br>
-    Cost of Mix Per 9 Liters: <input id="mixCostPerNineLiters" type="number" step="any"><br>
-    Cost of Bottled Soda Per Liter: <input id="bottledSodaCostPerLiter" type="number" step="any"><br>
-    <button onclick="loadPyodideAndCalculate()">Calculate</button>
+    <form id="calculatorForm">
+        Cost of SodaStream Machine: <input id="sodaStreamCost" type="number" step="any"><br>
+        Cost of CO2 Cartridges: <input id="cartridgeCost" type="number" step="any"><br>
+        Cartridge Lifespan (liters): <input id="cartridgeLifespan" type="number" step="any"><br>
+        Cost of Mix Per 9 Liters: <input id="mixCostPerNineLiters" type="number" step="any"><br>
+        Cost of Bottled Soda Per Liter: <input id="bottledSodaCostPerLiter" type="number" step="any"><br>
+        <button type="button" onclick="loadPyodideAndCalculate()">Calculate</button>
+        <button type="button" onclick="fillSodaStreamDefaults()">SodaStream Art Defaults</button>
+    </form>
     <p id="result"></p>
 </body>
 </html>
