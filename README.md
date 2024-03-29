@@ -10,7 +10,7 @@ This web-based calculator helps you determine how many 800ml bottles of soda you
 
 ## How to Use
 
-1. Visit the calculator hosted on GitHub Pages: [SodaStream Break-Even Calculator](https://<your_username>.github.io/<your_project_name>/)
+1. Visit the calculator hosted on GitHub Pages: [SodaStream Break-Even Calculator](https://saatvik-agrawal.github.io/sodastream-break-even-calculator/)
 2. Fill in the following details:
     - Cost of the SodaStream machine
     - Cost of CO2 cartridges
@@ -23,8 +23,8 @@ This web-based calculator helps you determine how many 800ml bottles of soda you
 
 If you prefer to run the calculator locally on your computer, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/<your_username>/<your_project_name>.git`
-2. Navigate to the cloned directory: `cd <your_project_name>`
+1. Clone the repository: `git clone https://github.com/saatvik-agrawal/sodastream-break-even-calculator.git`
+2. Navigate to the cloned directory: `cd sodastream-break-even-calculator`
 3. Open the `index.html` file in your web browser.
 
 ## Technologies Used
@@ -47,4 +47,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Developed with ❤️ by [Your Name](https://github.com/<your_username>)
+Developed with ❤️ by [Your Name](https://github.com/saatvik-agrawal)
