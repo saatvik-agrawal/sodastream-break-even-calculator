@@ -47,4 +47,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Developed with ❤️ by [Your Name](https://github.com/saatvik-agrawal)
+Developed with ❤️ by [Saatvik Agrawal](https://github.com/saatvik-agrawal)
