@@ -3,6 +3,8 @@ import math
 def calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridge_lifespan, mix_cost_per_nine_liters, bottled_soda_cost_per_liter):
     """
     Calculates the break-even point (in 0.8L bottles) for using a SodaStream.
+    The mix cost is provided per 9 liters and is converted to a cost per 0.8L bottle.
+    The bottled soda cost is provided per liter and converted to a cost per 0.8L bottle.
     
     Parameters:
       - soda_stream_cost: Cost of the SodaStream machine.
@@ -55,3 +57,4 @@ if __name__ == "__main__":
     result = calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridge_lifespan, mix_cost_per_nine_liters, bottled_soda_cost_per_liter)
     print(f"Break-even point: {result[0]} bottles")
     print(f"At the break-even point, SodaStream cost: ${result[1]:.2f}, Bottled Soda cost: ${result[2]:.2f}")
+    
