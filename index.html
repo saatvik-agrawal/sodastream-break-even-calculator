@@ -3,7 +3,6 @@
 <head>
     <title>SodaStream Break-Even Calculator with Pyodide</title>
     <script type="module">
-
         function fillSodaStreamDefaults() {
             document.getElementById('sodaStreamCost').value = 250;
             document.getElementById('cartridgeCost').value = 30;
@@ -11,49 +10,32 @@
             document.getElementById('mixCostPerNineLiters').value = 10;
             document.getElementById('bottledSodaCostPerLiter').value = 3.7;
         }
+        
         async function loadPyodideAndCalculate() {
             // Load Pyodide
             let pyodide = await loadPyodide();
             
-            // Python function definition
-            let pythonCode = `
-            def calculate_break_even_bottles(soda_stream_cost, cartridge_cost, cartridge_lifespan, mix_cost_per_nine_liters, bottled_soda_cost_per_liter):
-                mix_cost_per_800ml = mix_cost_per_nine_liters / (9000 / 800)
-                bottled_soda_cost_per_800ml = bottled_soda_cost_per_liter * 0.8
-                total_bottles = 0
-                total_cost_soda_stream = soda_stream_cost
-                cartridges_used = 0
-                while True:
-                    total_liters = total_bottles * 0.8
-                    cartridges_needed = (total_liters // cartridge_lifespan) + (1 if total_liters % cartridge_lifespan > 0 else 0)
-                    if cartridges_needed > cartridges_used:
-                        cartridges_used = cartridges_needed
-                    co2_cost = cartridges_used * cartridge_cost
-                    mix_cost = total_bottles * mix_cost_per_800ml
-                    total_cost_soda_stream = soda_stream_cost + co2_cost + mix_cost
-                    total_cost_bottled_soda = total_bottles * bottled_soda_cost_per_800ml
-                    if total_cost_soda_stream <= total_cost_bottled_soda:
-                        break
-                    total_bottles += 1
-                return total_bottles, total_cost_soda_stream, total_cost_bottled_soda
-            `;
-
-            // Run the Python function definition
-            pyodide.runPython(pythonCode);
-
-            // Construct the Python function call with actual values from the form
+            // Fetch the external Python file (calculator.py)
+            let response = await fetch("calculator.py");
+            let calculatorPy = await response.text();
+            
+            // Execute the content of calculator.py to load the module
+            pyodide.runPython(calculatorPy);
+            
+            // Retrieve input values from the form
             let soda_stream_cost = document.getElementById('sodaStreamCost').value;
             let cartridge_cost = document.getElementById('cartridgeCost').value;
             let cartridge_lifespan = document.getElementById('cartridgeLifespan').value;
             let mix_cost_per_nine_liters = document.getElementById('mixCostPerNineLiters').value;
             let bottled_soda_cost_per_liter = document.getElementById('bottledSodaCostPerLiter').value;
-
-            // Run the function with the form values
+            
+            // Call the Python function from calculator.py
             let result = pyodide.runPython(`
-                calculate_break_even_bottles(${soda_stream_cost}, ${cartridge_cost}, ${cartridge_lifespan}, ${mix_cost_per_nine_liters}, ${bottled_soda_cost_per_liter})
+                import calculator
+                calculator.calculate_break_even_bottles(${soda_stream_cost}, ${cartridge_cost}, ${cartridge_lifespan}, ${mix_cost_per_nine_liters}, ${bottled_soda_cost_per_liter})
             `);
-
-            // Display the result
+            
+            // Display the result on the webpage
             document.getElementById('result').textContent = 'Result: ' + result.toString();
         }
     </script>
