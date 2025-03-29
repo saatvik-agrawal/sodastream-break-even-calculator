@@ -27,15 +27,16 @@ If you prefer to run the calculator on your computer, follow these steps:
 
 1. Clone the repository:
 
+```
 git clone https://github.com/saatvik-agrawal/sodastream-break-even-calculator.git
-
 ```
+
 2. Navigate to the repository:
-```
 
+```
 cd sodastream-break-even-calculator
-
 ```
+
 3. Open the `index.html` file in your web browser (an internet connection is required to load Pyodide from the CDN).
 
 ## Technologies Used
@@ -59,4 +60,3 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 Developed with ❤️ by [Saatvik Agrawal](https://github.com/saatvik-agrawal)
-```
