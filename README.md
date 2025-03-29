@@ -55,7 +55,6 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Acknowledgments
 
 - This project was inspired by the need for a simple tool to compare the cost-effectiveness of using a SodaStream versus buying bottled soda.
-- Special thanks to everyone who contributed and helped improve the calculator.
 
 ---
 
