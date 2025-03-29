@@ -1,7 +1,7 @@
 
 # SodaStream Break-Even Calculator
 
-This web-based calculator uses [Pyodide](https://pyodide.org) to run Python code directly in the browser. It helps you determine how many 800ml bottles of soda you need to make with a SodaStream before it becomes more cost-effective than buying bottled soda. The calculator factors in the cost of the SodaStream machine, CO2 cartridges, syrup mix (sold per 9 liters), and compares it with the cost of buying soda per liter.
+This tool helps you figure out how many bottles of soda you need to make with your SodaStream before it starts saving you money compared to buying bottled soda. Just enter a few costs – the machine, CO2 cartridges, syrup mix, and store-bought soda – and it will calculate the break-even point in 800ml bottles. It’s fast, easy, and runs right in your browser using Python.
 
 ## Features
 
@@ -33,7 +33,7 @@ git clone https://github.com/saatvik-agrawal/sodastream-break-even-calculator.gi
 
 2. Navigate to the repository:
 
-```
+```python-repl
 cd sodastream-break-even-calculator
 ```
 
